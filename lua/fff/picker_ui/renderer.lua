@@ -345,6 +345,7 @@ local function rerender_cursor_rows(old_cursor, new_cursor)
   end
 
   vim.api.nvim_win_set_cursor(S.list_win, { new_lines.last, 0 })
+  vim.api.nvim_win_call(S.list_win, function() vim.cmd('normal! zz') end)
   finalize_render(ctx.separator_line, ctx)
   return true
 end
