@@ -939,7 +939,7 @@ function M.scroll_to_line(line)
   M.state.scroll_offset = new_offset
   pcall(vim.api.nvim_win_call, M.state.winid, function()
     vim.api.nvim_win_set_cursor(M.state.winid, { target_line, 0 })
-    vim.cmd('normal! zt')
+    vim.cmd('normal! zz')
   end)
 end
 
