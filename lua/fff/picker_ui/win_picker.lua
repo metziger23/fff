@@ -1,6 +1,6 @@
 local M = {}
 
-local PICK_CHARS = 'asdfghjkl'
+local PICK_CHARS = 'arstgmneo'
 
 local function is_picker_window(win)
   local picker_state = require('fff.picker_ui.picker_ui_state').state
