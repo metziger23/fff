@@ -153,6 +153,13 @@ function M.toggle_preview()
   picker_ui.toggle_preview()
 end
 
+--- Select the current item, prompting for a target window first.
+function M.select_win()
+  local picker_ok, picker_ui = pcall(require, 'fff.picker_ui.picker_ui')
+  if not picker_ok then return end
+  picker_ui.select('win')
+end
+
 --- Toggle maximize mode. When maximized, the picker fills the entire editor.
 function M.toggle_maximize()
   local picker_ok, picker_ui = pcall(require, 'fff.picker_ui.picker_ui')

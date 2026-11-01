@@ -32,6 +32,7 @@ local M = {}
 --- @field select_split string
 --- @field select_vsplit string
 --- @field select_tab string
+--- @field select_win string
 --- @field move_up string|string[]
 --- @field move_down string|string[]
 --- @field preview_scroll_up string
@@ -86,7 +87,7 @@ local M = {}
 --- @field enabled boolean
 --- @field grep_time_budget_ms number
 
---- @alias FffSelectAction 'edit' | 'split' | 'vsplit' | 'tab'
+--- @alias FffSelectAction 'edit' | 'split' | 'vsplit' | 'tab' | 'win'
 
 --- @class FffSelectConfig
 --- @field select_window fun(current_buf: integer, action: FffSelectAction): integer|nil
@@ -326,6 +327,7 @@ local function init()
       select_split = '<C-s>',
       select_vsplit = '<C-v>',
       select_tab = '<C-t>',
+      select_win = '<S-CR>',
       -- you can assign multiple keys to any action
       move_up = { '<Up>', '<C-p>' },
       move_down = { '<Down>', '<C-n>' },

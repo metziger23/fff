@@ -545,7 +545,9 @@ function M.select(action)
   -- When opening with selections active, open every selected file. The first
   -- selected file is focused; the rest are added as listed buffers.
   local selected_file_entries = {}
-  if action == 'edit' and not is_grep_item then selected_file_entries = picker_ui_state.get_selected_file_entries() end
+  if (action == 'edit' or action == 'win') and not is_grep_item then
+    selected_file_entries = picker_ui_state.get_selected_file_entries()
+  end
 
   if is_grep_item and item.line_number and item.line_number > 0 then
     location = { line = item.line_number }
@@ -576,6 +578,7 @@ function M.select(action)
   if #selected_file_entries > 0 and selected_file_entries[1].relative_path ~= item.relative_path then location = nil end
 
   vim.cmd('stopinsert')
+  local main_win = M.state.main_win
   M.close()
 
   local on_submit = config and config.on_submit
@@ -594,7 +597,13 @@ function M.select(action)
       })
       if not ok then vim.notify('FFF: on_submit error: ' .. tostring(err), vim.log.levels.ERROR) end
     else
-      if config and config.select and type(config.select.select_window) == 'function' then
+      if action == 'win' then
+        local win_picker = require('fff.picker_ui.win_picker')
+        local target_win = win_picker.pick_win(main_win)
+        if not target_win then return end
+        vim.api.nvim_set_current_win(target_win)
+        action = 'edit'
+      elseif config and config.select and type(config.select.select_window) == 'function' then
         local ok, win = pcall(config.select.select_window, vim.api.nvim_get_current_buf(), action)
         if not ok then
           vim.notify('FFF: select.select_window error: ' .. tostring(win), vim.log.levels.WARN)
@@ -708,6 +717,7 @@ end
 --- @param current_file_cache string|nil Current file cache
 local function open_ui_with_state(query, results, location, merged_config, current_file_cache)
   M.state.config = merged_config
+  M.state.main_win = vim.api.nvim_get_current_win()
 
   if not M.create_ui() then
     vim.notify('Failed to create picker UI', vim.log.levels.ERROR)

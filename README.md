@@ -296,6 +296,7 @@ require('fff').scan_files()                        -- force rescan
 require('fff').refresh_git_status()                -- refresh git status
 require('fff').toggle_preview()                    -- toggle preview panel
 require('fff').toggle_maximize()                   -- toggle maximize layout
+require('fff').select_win()                        -- select file in a chosen window
 require('fff').find_files_in_dir(path)             -- find in a specific dir
 require('fff').change_indexing_directory(new_path) -- change root
 
@@ -380,6 +381,7 @@ vim.api.nvim_create_autocmd('User', {
 - `:FFFDebug [on|off|toggle]`. Toggle the scoring display.
 - `:FFFTogglePreview`. Toggle the preview panel on/off.
 - `:FFFToggleMaximize`. Toggle maximize layout (fills the entire editor).
+- `:FFFSelectWin`. Select file in a chosen window.
 - `:FFFOpenLog`. Open `~/.local/state/nvim/log/fff.log`.
 
 ### Configuration
@@ -453,6 +455,7 @@ require('fff').setup({
     select_split = '<C-s>',
     select_vsplit = '<C-v>',
     select_tab = '<C-t>',
+    select_win = '<S-CR>',
     move_up = { '<Up>', '<C-p>' },
     move_down = { '<Down>', '<C-n>' },
     preview_scroll_up = '<C-u>',

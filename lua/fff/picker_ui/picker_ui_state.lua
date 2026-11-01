@@ -23,6 +23,8 @@ M.state = {
   preview_enabled = nil,
   -- Runtime maximize override
   maximized = false,
+  -- The window that was focused before the picker opened (for window selection)
+  main_win = nil,
 
   -- Data state
   items = {},
@@ -121,6 +123,7 @@ function M.reset_state()
   M.state.preview_visible = false
   M.state.preview_enabled = nil
   M.state.maximized = false
+  M.state.main_win = nil
 
   M.state.items = {}
   M.state.filtered_items = {}

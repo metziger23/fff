@@ -125,6 +125,7 @@ function M.close()
   S.preview_visible = false
   S.preview_enabled = nil
   S.maximized = false
+  S.main_win = nil
   S.items = {}
   S.filtered_items = {}
   S.line_to_item = {}

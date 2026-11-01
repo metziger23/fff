@@ -65,6 +65,10 @@ vim.api.nvim_create_user_command('FFFTogglePreview', function() require('fff').t
   desc = 'Toggle the FFF preview panel',
 })
 
+vim.api.nvim_create_user_command('FFFSelectWin', function() require('fff').select_win() end, {
+  desc = 'Select file in a chosen window',
+})
+
 vim.api.nvim_create_user_command('FFFToggleMaximize', function() require('fff').toggle_maximize() end, {
   desc = 'Toggle FFF maximize layout',
 })

@@ -272,6 +272,10 @@ function M.setup()
   -- Selection highlight - use Directory/Number colors (better than green 'Added')
   vim.cmd('highlight default link FFFSelected Directory')
 
+  -- Window picker overlay highlights
+  vim.cmd('highlight default FFFWinPicker guibg=#1e1e2e guifg=#89b4fa gui=bold cterm=bold')
+  vim.cmd('highlight default FFFWinPickerCurrent guibg=#313244 guifg=#a6e3a1 gui=bold cterm=bold')
+
   local dir_fg_gui = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Directory')), 'fg', 'gui')
   local dir_fg_cterm = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Directory')), 'fg', 'cterm')
 
